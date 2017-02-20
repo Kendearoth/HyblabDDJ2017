@@ -24,13 +24,17 @@
             </script>
         <![endif]-->
 
+        <!-- Those polyfills are required so that old browsers support fetch mecanism -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.0.5/es6-promise.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.1/fetch.min.js" defer></script>
+
         <!-- Libraries -->
         <script type="text/javascript" src="lib/jquery.min.js"></script>
         <script type="text/javascript" src="lib/jquery-ui.min.js" defer></script>
         <script type="text/javascript" src="lib/jquery.fullPage.min.js" defer></script>
         <script type="text/javascript" src="lib/jquery.fittext.js" defer></script>
-        <script type="text/javascript" src="lib/d3.v3.min.js"></script>
-
+        <script type="text/javascript" src="lib/d3.v3.min.js" defer></script>
+        
         <!-- Load index and data -->
         <script type="text/javascript" src="js/load.js" defer></script>
 
@@ -53,19 +57,19 @@
         <script type="text/javascript" src="js/animateUsingD3.js" defer></script>
 
         <!-- Configuration de fullPage.js -->
-        <script type="text/javascript">                       
+        <script type="text/javascript">
             $(document).ready(function() {
                 var idsOfSections = ["section0", "section1", "section2", "scenario1", "scenario2", "scenario3", "section6"];
-                function navLiUpdate() { 
+                function navLiUpdate() {
                     var old = document.getElementsByClassName("active-li")[0];
-                    var str = old.className.replace("active-li", ""); 
+                    var str = old.className.replace("active-li", "");
                     old.className = str; // on remove l'ancienne balise "active-li" pour assurer l'unicité
-                    
+
                     var index = idsOfSections.indexOf(document.getElementsByClassName('active')[0].id); // on récupère l'index de la slide actuellement affichée
-                    
+
                     document.getElementById("fp-nav").childNodes[1].childNodes[2*index+1].className = "active-li"; // on définit la balise de la slide nav correspondante à la slide affichée comme étant la nouvelle "active-li"
                 };
-                
+
                 $('#fullpage').fullpage({
                   afterLoad: function () {updateSlideNav(); navLiUpdate();}, // pour qu'après chaque chargement de slide, fullPage lance les fonctions updateSlideNav() du modules noSlideNav.js et navLiUpdate() définie ci-dessus
                 });

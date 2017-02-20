@@ -8,16 +8,18 @@ var dataviz = {
 }
 
 function create_dataviz() {
-    if (dataviz.done) {
-        clearBarChart("#bar-demo");
-        clearBarChart("#bar-demo-3");
+    if (getDepart() !== "" && getArrivee() !== "") {
+        if (dataviz.done) {
+            clearBarChart("#bar-demo");
+            clearBarChart("#bar-demo-3");
+        }
+
+        create_dataviz_1();
+        create_dataviz_2();
+        create_dataviz_3();
+
+        dataviz.done = true;
     }
-
-    create_dataviz_1();
-    create_dataviz_2();
-    create_dataviz_3();
-
-    dataviz.done = true;
 }
 
 function create_dataviz_1() {
@@ -55,7 +57,6 @@ function create_dataviz_2() {
 }
 
 function create_dataviz_3() {
-
     var total = data.d30.matrix.motif.total[getDepart()][getArrivee()];
 
     var bar = [0, 0, 0];
